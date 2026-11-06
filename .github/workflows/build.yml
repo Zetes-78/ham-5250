@@ -1,7 +1,8 @@
 name: Build
 
-# Every push builds and tests. Pushing a tag like v1.0.0 also publishes a GitHub Release
-# with the installer and a portable .exe zip attached for download.
+# Every push builds and tests. To publish a release, change the number in VERSION and push to main:
+# if there's no release for that version yet, this creates tag vX.Y.Z and a GitHub Release with the
+# installer and a portable .exe zip attached for download. (Pushing a vX.Y.Z tag works too.)
 on:
   push:
     branches: [main]
@@ -17,6 +18,8 @@ jobs:
     runs-on: windows-latest
     steps:
       - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
 
       - uses: actions/setup-dotnet@v4
         with:
@@ -26,9 +29,16 @@ jobs:
         id: ver
         shell: pwsh
         run: |
-          if ($env:GITHUB_REF -like 'refs/tags/v*') { $v = $env:GITHUB_REF_NAME.Substring(1) }
-          else { $v = "1.0.0-dev.$env:GITHUB_RUN_NUMBER" }
+          $release = 'false'
+          if ($env:GITHUB_REF -like 'refs/tags/v*') { $v = $env:GITHUB_REF_NAME.Substring(1); $release = 'true' }
+          else {
+            $base = (Get-Content VERSION -Raw).Trim()
+            $exists = git tag --list "v$base"
+            if ($env:GITHUB_REF -eq 'refs/heads/main' -and $env:GITHUB_EVENT_NAME -eq 'push' -and -not $exists) { $v = $base; $release = 'true' }
+            else { $v = "$base-dev.$env:GITHUB_RUN_NUMBER" }
+          }
           "version=$v" >> $env:GITHUB_OUTPUT
+          "release=$release" >> $env:GITHUB_OUTPUT
           "number=$(($v -split '-')[0])" >> $env:GITHUB_OUTPUT
 
       - name: Test the 5250 engine
@@ -60,8 +70,11 @@ jobs:
           path: dist/*
 
       - name: Publish the release
-        if: startsWith(github.ref, 'refs/tags/v')
+        if: steps.ver.outputs.release == 'true'
         uses: softprops/action-gh-release@v2
         with:
+          tag_name: v${{ steps.ver.outputs.version }}
+          target_commitish: ${{ github.sha }}
+          name: Ham 5250 ${{ steps.ver.outputs.version }}
           files: dist/*
           generate_release_notes: true

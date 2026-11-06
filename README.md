@@ -73,12 +73,9 @@ Command line: `Ham5250.exe [--profile "Name"] [--host name] [--port 992] [--notl
 
 ## Building
 
-GitHub Actions builds every push on Windows. Pushing a tag publishes a release:
-
-```
-git tag v1.0.0
-git push origin v1.0.0
-```
+GitHub Actions builds every push on Windows. To publish a release, change the number in `VERSION`
+(e.g. `1.0.1`) and push to `main`. The build creates the `v1.0.1` tag and a Release with the
+installer and portable zip attached.
 
 To build locally on Windows with the .NET 8 SDK:
 
