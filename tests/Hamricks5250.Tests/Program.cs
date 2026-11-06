@@ -289,7 +289,10 @@ Test("End to end over a real socket with a simulated IBM i", () =>
     Check(screenShown.Wait(5000), "sign-on screen received through telnet");
     lock (s) { foreach (var c in "qsecofr") s.TypeChar(c); s.SendAid(Aid.Enter); }
     Check(hostGot.Task.Wait(5000), "host received the Enter record");
-    var rec = hostGot.Task.Result;
+    // Late telnet replies can arrive in the same read on some platforms: locate the GDS header (12 A0).
+    var raw = hostGot.Task.Result;
+    int at = Enumerable.Range(2, Math.Max(0, raw.Length - 3)).FirstOrDefault(k => raw[k] == 0x12 && raw[k + 1] == 0xA0, -1);
+    var rec = at >= 2 ? raw[(at - 2)..] : raw;
     Check(rec[2] == 0x12 && rec[3] == 0xA0 && rec[12] == Aid.Enter && e37.Decode(rec.AsSpan(16, 7)) == "QSECOFR", "record = header + cursor + Enter + SBA + QSECOFR");
     conn.Dispose();
     listener.Stop();
