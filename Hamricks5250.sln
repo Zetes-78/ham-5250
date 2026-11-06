@@ -1,0 +1,36 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.0.31903.59
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{002FAA8A-3B13-49CB-937A-6C59565619B7}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Hamricks5250.Core", "src\Hamricks5250.Core\Hamricks5250.Core.csproj", "{B7EBC143-1008-4623-9BE9-870DD1812569}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "tests", "tests", "{3C9F74A3-516D-418A-A4CF-E785B0FB6E13}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Hamricks5250.Tests", "tests\Hamricks5250.Tests\Hamricks5250.Tests.csproj", "{B02321B8-83B6-444D-A999-705955521F66}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{B7EBC143-1008-4623-9BE9-870DD1812569}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B7EBC143-1008-4623-9BE9-870DD1812569}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B7EBC143-1008-4623-9BE9-870DD1812569}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B7EBC143-1008-4623-9BE9-870DD1812569}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B02321B8-83B6-444D-A999-705955521F66}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B02321B8-83B6-444D-A999-705955521F66}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B02321B8-83B6-444D-A999-705955521F66}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B02321B8-83B6-444D-A999-705955521F66}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{B7EBC143-1008-4623-9BE9-870DD1812569} = {002FAA8A-3B13-49CB-937A-6C59565619B7}
+		{B02321B8-83B6-444D-A999-705955521F66} = {3C9F74A3-516D-418A-A4CF-E785B0FB6E13}
+	EndGlobalSection
+EndGlobal

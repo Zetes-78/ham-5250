@@ -1,0 +1,30 @@
+// Machine-wide defaults for Ham 5250.
+// Copy to C:\ProgramData\Hamricks5250\settings.json (the installer writes this for you with /HOST=...).
+// A user's own settings (%APPDATA%\Hamricks5250\settings.json) win unless LockProfiles is true.
+{
+  "Profiles": [
+    {
+      "Name": "Hamrick's IBM i",
+      "Host": "hamibm.corp.ham.com",
+      "Port": 992,
+      "UseTls": true,
+      "AllowUntrustedCertificate": false,
+      "TrustedThumbprint": null,
+      "DeviceName": "",
+      "DevicePrefix": "H",
+      "Wide": false,
+      "CodePage": 37,
+      "AutoConnect": true,
+      "AutoReconnect": true
+    }
+  ],
+  "DefaultProfile": "Hamrick's IBM i",
+  "EnterKey": "Windows",
+  "ShowColumnSeparators": true,
+  "Hotspots": true,
+  "CursorBlink": true,
+  "Crosshair": false,
+  "Kiosk": false,
+  "ConfirmOnClose": true,
+  "LockProfiles": false
+}

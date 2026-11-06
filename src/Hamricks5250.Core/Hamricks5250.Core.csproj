@@ -1,0 +1,14 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net8.0</TargetFramework>
+    <Nullable>enable</Nullable>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <LangVersion>latest</LangVersion>
+    <RootNamespace>Hamricks5250.Core</RootNamespace>
+    <Company>Night Tech Solutions</Company>
+    <Product>Ham 5250</Product>
+    <Authors>Jason Scates</Authors>
+  </PropertyGroup>
+
+</Project>
